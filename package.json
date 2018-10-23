@@ -1,0 +1,22 @@
+{
+  "name": "stripe-serverless",
+  "version": "0.0.0",
+  "description": "Accept payments with AWS Lambda",
+  "main": "handler.js",
+  "scripts": {
+    "deploy:dev": "serverless deploy -v",
+    "deploy:prod": "serverless deploy -v --stage prod",
+    "logs": "serverless logs -f createCharge -t",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "serverless offline start"
+  },
+  "author": "Purvi Kanal",
+  "license": "MIT",
+  "dependencies": {
+    "stripe": "^6.12.1"
+  },
+  "devDependencies": {
+    "serverless": "^1.32.0",
+    "serverless-offline": "^3.28.1"
+  }
+}

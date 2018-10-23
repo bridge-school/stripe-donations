@@ -1,0 +1,26 @@
+service: stripe-donations
+
+custom:
+  secrets: ${file(secrets.json)}
+
+# frameworkVersion: "=X.X.X"
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  runtime: nodejs8.10
+  environment:
+    STRIPE_SECRET_KEY: ${self:custom.secrets.stripeSecretKeys.${self:provider.stage}} # Stripe secret API key
+  profile: stripe-serverless
+
+functions:
+  createCharge:
+    handler: functions.createCharge
+    events:
+      - http:
+          path: charges
+          method: post
+          cors: true
